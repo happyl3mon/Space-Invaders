@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 
@@ -10,7 +11,6 @@ public class controller : MonoBehaviour
     [SerializeField] private float movementBoundaryX = 7.5f;
     [SerializeField] private float yLimit = 3.5f;
     [SerializeField] private GameObject bullet;
-    [SerializeField] private float bulletSpeed;
     [SerializeField] private KeyCode shootBullet;
 
 
@@ -52,12 +52,18 @@ public class controller : MonoBehaviour
         }
     }
 
-    void shootBulletFunc()
+    public void shootBulletFunc()
     {
         Vector3 origin = transform.position;
         GameObject bulletInstance = Instantiate(bullet, origin, Quaternion.identity);
+        Debug.Log(origin);
 
         bulletInstance.transform.Translate(new Vector3(0f, 1f));
         Destroy(bulletInstance, 5f);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Destroy()
     }
 }
