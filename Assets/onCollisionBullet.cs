@@ -1,9 +1,10 @@
-using UnityEditor;
+using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class onCollision : MonoBehaviour
+public class onCollisionBullet : MonoBehaviour
 {
-    [SerializeField] private GameObject bullet;
+    public event EventHandler OnHit;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -14,12 +15,11 @@ public class onCollision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(bullet, 0f);
-        Debug.Log("worked");
+        OnHit?.Invoke(this, EventArgs.Empty);
     }
 }

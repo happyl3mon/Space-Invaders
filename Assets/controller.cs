@@ -1,6 +1,8 @@
+using System.Collections.Generic;
+//using System.Diagnostics;
 using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.Scripting.APIUpdating;
+
 
 public class controller : MonoBehaviour
 {
@@ -12,12 +14,13 @@ public class controller : MonoBehaviour
     [SerializeField] private float yLimit = 3.5f;
     [SerializeField] private GameObject bullet;
     [SerializeField] private KeyCode shootBullet;
+    public List<GameObject> projectileInstances;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        //GameObject[] projectileInstances = new GameObject[] {};
     }
 
     // Update is called once per frame
@@ -56,14 +59,23 @@ public class controller : MonoBehaviour
     {
         Vector3 origin = transform.position;
         GameObject bulletInstance = Instantiate(bullet, origin, Quaternion.identity);
-        Debug.Log(origin);
+        projectileInstances.Add(bulletInstance);
+        Debug.Log(projectileInstances.Count);
 
         bulletInstance.transform.Translate(new Vector3(0f, 1f));
         Destroy(bulletInstance, 5f);
+        // does that work? NOPE... still working w chatgpt to brainstorm how to do this
+        // chatgpt question reminded me of delegates... so were gonna look at that tut again and implement
+
+        // wth...
+        // im trying to think of a way to sense when the particular instance is destroyed and remove the
+        // particular instance
     }
+
+    
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        //Destroy()
+        // this will be needed later for player death, not for initial purpose
     }
 }

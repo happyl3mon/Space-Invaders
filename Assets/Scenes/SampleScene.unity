@@ -488,7 +488,6 @@ GameObject:
   - component: {fileID: 1966505396}
   - component: {fileID: 1966505398}
   - component: {fileID: 1966505399}
-  - component: {fileID: 1966505400}
   m_Layer: 0
   m_Name: Enemy Basic (Square)
   m_TagString: Untagged
@@ -624,34 +623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d601a073eeaf5245b6692b8bd895e55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 1958747799559980268, guid: f91dc100043d7d34ba7a99f6d0dd9d03, type: 3}
---- !u!50 &1966505400
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1966505395}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  player: {fileID: 1512568651}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
