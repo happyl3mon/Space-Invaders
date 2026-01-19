@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class onCollisionSqEnemy : MonoBehaviour
@@ -7,8 +9,8 @@ public class onCollisionSqEnemy : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       // OnCollisionBullet onCollisionBullet hitRegister = bullet.GetComponent<onCollisionBullet>();
-       //onCollisionBullet.OnHit += onHitEnemy;
+       onCollisionBullet onCollisionBullet = bullet.GetComponent<onCollisionBullet>();
+       onCollisionBullet.OnCollision += onHitEnemy;
     }
 
     // Update is called once per frame
@@ -17,8 +19,17 @@ public class onCollisionSqEnemy : MonoBehaviour
         
     }
 
-    private void onHitEnemy()
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if (!collision.gameObject.GetComponent<onCollisionBullet>().IsDestroyed())
+        {
+            Destroy(collision.gameObject);
+        }
+        Debug.Log("object has collided with enemy");
+    }
+
+    private void onHitEnemy(object sender, EventArgs e)
+    {
+        Debug.Log("event fired");
     }
 }
