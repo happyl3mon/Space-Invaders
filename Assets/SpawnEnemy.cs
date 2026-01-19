@@ -6,15 +6,16 @@ public class SpawnEnemy : MonoBehaviour
     [SerializeField] private GameObject EnemySquare;
     [SerializeField] private float spawnRangeX;
     private float spawnTimerSQ;
-    private float maxTimeSQ = 1f;
-    private int enemyCountSQ = 12;
+    private float maxTimeSQ = 3f;
+    private int enemyCountSQ = 6;
     private float rowWidth = 9f;
     private Vector3 spawnCenter = Vector3.zero;
+    private bool isSpawning;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        SpawnEnemySquare();
     }
 
     // Update is called once per frame
@@ -22,14 +23,20 @@ public class SpawnEnemy : MonoBehaviour
     {
         if (spawnTimerSQ > maxTimeSQ)
         {
-            //SpawnEnemySquare();
+            SpawnEnemySquare();
             spawnTimerSQ = 0f;
         }
-        spawnTimerSQ += Time.deltaTime;
+
+        if (isSpawning == false)
+        {
+            spawnTimerSQ += Time.deltaTime;        
+        }
     }
 
     void SpawnEnemySquare()
     {
+        isSpawning = true;
+
         if (enemyCountSQ <= 1) return;
 
         float spacing = rowWidth / (enemyCountSQ - 1);
@@ -40,6 +47,8 @@ public class SpawnEnemy : MonoBehaviour
             Vector3 spawnLoc = new Vector3(startX + spacing * i, 4f, spawnCenter.z);
             GameObject enemySquare = Instantiate(EnemySquare, spawnLoc, Quaternion.identity);
         }
+
+        isSpawning = false;
 
     }
 }
